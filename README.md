@@ -2,16 +2,16 @@
 
 I made this project with [Reactstrap](https://reactstrap.github.io), using the [redux](https://redux.js.org/) and [jsonbin](https://jsonbin.io). I coded to improve myself. I used to jsonbin for api that i was made it.
 
-##Live Demo
+## Live Demo
 
 [River Restaurant](riversmenu.netlify.app)
 
 ## Technologies
 
--React.js
--Bootstrap
--Reactstrap
--Jsonbin
+- React.js
+- Bootstrap
+- Reactstrap
+- Jsonbin
 
 ## Special Thanks
 
