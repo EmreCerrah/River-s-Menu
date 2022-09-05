@@ -4,7 +4,7 @@ I made this project with [Reactstrap](https://reactstrap.github.io), using the [
 
 ## Live Demo
 
-[River Restaurant](riversmenu.netlify.app)
+[River Restaurant](https://riversmenu.netlify.app/)
 
 ## Technologies
 
