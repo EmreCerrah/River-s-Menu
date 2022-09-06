@@ -12,12 +12,12 @@ class Dasboard extends Component {
     return (
       <div>
         <Row>
-          <Col xs="3">
+          <Col md="3" sm="12">
             <CategoryList />
           </Col>
 
-          <Col xs="9">
-           <ProductList/>
+          <Col md="9" sm="12">
+            <ProductList />
           </Col>
         </Row>
       </div>
@@ -29,7 +29,6 @@ function mapStateToProps(state) {
   return {
     currentCategory: state.changeCategoryReducer,
     products: state.productListReducer,
-    
   };
 }
 
@@ -38,7 +37,6 @@ function mapDispatchToProps(dispatch) {
     actions: {
       getProducts: bindActionCreators(productActions.getProducts, dispatch),
       addToCart: bindActionCreators(cartActions.addToCart, dispatch),
-     
     },
   };
 }

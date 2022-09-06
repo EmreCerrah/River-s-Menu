@@ -10,15 +10,14 @@ import Dasboard from "./Dasboard";
 export default class App extends Component {
   render() {
     return (
-      <Container>
+      <Container md="6" sm="">
         <Navi />
         <Routes>
           <Route exact path="/" element={<Dasboard />} />
-          <Route exact path="/cart" element={<CartDetail/>} />
+          <Route exact path="/cart" element={<CartDetail />} />
           <Route path="/product" element={<Dasboard />} />
-         
-       
-           <Route path='*' element={<Notfound/>} />
+
+          <Route path="*" element={<Notfound />} />
         </Routes>
       </Container>
     );

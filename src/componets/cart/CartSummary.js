@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import { bindActionCreators } from "redux";
 import * as cartActions from "../../redux/actions/cartActions";
-import {  Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class CartSummary extends Component {
   renderEmpty() {
@@ -21,7 +21,9 @@ class CartSummary extends Component {
       </NavItem>
     );
   }
+
   renderSummary() {
+    let total = 0;
     return (
       <UncontrolledDropdown nav inNavbar>
         <DropdownToggle nav caret>
@@ -34,21 +36,43 @@ class CartSummary extends Component {
                 color="danger"
                 onClick={() =>
                   this.props.actions.removeFromCart(cartItem.product)
-               }
-               style={ {marginRight: '5px' }}
+                }
+                style={{ marginRight: "5px" }}
               >
                 X
               </Badge>
               {cartItem.product.name}
-              <Badge color="success" className=" p-2"  style={ {marginLeft: '5px' }} >{cartItem.quantity}</Badge>
+              <Badge
+                color="success"
+                className=" p-2"
+                style={{ marginLeft: "5px" }}
+              >
+                {cartItem.quantity}
+              </Badge>
+              <div style={{ display: "none" }}>
+                {(total += this.getprice(cartItem.product) * cartItem.quantity)}
+              </div>
             </DropdownItem>
           ))}
 
           <DropdownItem divider />
-          <DropdownItem><Link to="/cart">Go Cart!</Link></DropdownItem>
+          <DropdownItem>
+            <Link to="/cart">Go Cart!</Link>{" "}
+            <Badge
+              color="warning"
+              className=" p-2"
+              style={{ marginLeft: "2rem" }}
+            >
+              {total}$
+            </Badge>{" "}
+          </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
     );
+  }
+
+  getprice(product) {
+    return parseFloat(product.price);
   }
 
   render() {
@@ -73,4 +97,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(CartSummary);
+export default connect(mapStateToProps, mapDispatchToProps)(CartSummary);

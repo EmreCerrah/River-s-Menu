@@ -3,26 +3,31 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as cartActions from "../../redux/actions/cartActions";
 import { Table, Button } from "reactstrap";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 class CartDetail extends Component {
-   
-    notify = (note) => toast.error(note, {
-        theme: "dark",
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        });
+  notify = (note) =>
+    toast.error(note, {
+      theme: "dark",
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
-    removeFromCart(product){
-        this.props.actions.removeFromCart(product)
-        this.notify('Removed from Cart!')
-    }
+  removeFromCart(product) {
+    this.props.actions.removeFromCart(product);
+    this.notify("Removed from Cart!");
+  }
+
+  getprice(product) {
+    return parseFloat(product.price);
+  }
 
   render() {
+    let total = 0;
     return (
       <div>
         <Table hover>
@@ -32,7 +37,7 @@ class CartDetail extends Component {
               <th>Product Name</th>
               <th>Price</th>
               <th>Quantity</th>
-              <th/>
+              <th />
             </tr>
           </thead>
           <tbody>
@@ -49,9 +54,16 @@ class CartDetail extends Component {
                   >
                     Delete
                   </Button>
+                  <div style={{ display: "none" }}>
+                    {
+                      (total +=
+                        this.getprice(cartItem.product) * cartItem.quantity)
+                    }
+                  </div>
                 </td>
               </tr>
             ))}
+            <div>Total Price : {total}$</div>
           </tbody>
         </Table>
         <ToastContainer />

@@ -25,7 +25,6 @@ import LoadingScreen from "../common/LoadingScreen";
 class ProductList extends Component {
   componentDidMount() {
     this.props.actions.getProducts();
-    
   }
 
   notify = () =>
@@ -55,25 +54,30 @@ class ProductList extends Component {
           </Badge>
         </h4>
 
-        <LoadingScreen className='align-content-center' loading={this.props.products.length===0?true:false} />
+        <LoadingScreen
+          className="align-content-center"
+          loading={this.props.products.length === 0 ? true : false}
+        />
 
         <div className="d-flex align-content-center flex-wrap ">
-          {
-          this.props.products.map((product) => (
-            <div key={product.id} className=" p-2">
+          {this.props.products.map((product) => (
+            <div key={product.id} className=" p-2" sm="6" md="4">
               <Card
+                xs="6"
+                sm="4"
                 color="dark"
                 inverse
                 style={{
-                  minHeight: "30rem",
-                  width: "16rem",
+                  height: "25rem",
+                  width: "12rem",
                   alignItems: "center",
+                  maxHeight: "25rem",
                 }}
               >
                 <CardImg
                   top
                   width="100%"
-                  style={{ maxHeight: "16rem" }}
+                  style={{ maxHeight: "10rem" }}
                   src={product.img}
                   alt="Card image cap"
                 />
@@ -85,14 +89,14 @@ class ProductList extends Component {
                     color="success"
                     onClick={() => {
                       this.addToCart(product);
-                      this.props.actions.setLoading(false)
+                      this.props.actions.setLoading(false);
                     }}
                   >
                     Add
                   </Button>
                 </CardBody>
               </Card>
-            </div >
+            </div>
           ))}
         </div>
 
@@ -106,7 +110,6 @@ function mapStateToProps(state) {
   return {
     currentCategory: state.changeCategoryReducer,
     products: state.productListReducer,
-    
   };
 }
 
@@ -115,7 +118,6 @@ function mapDispatchToProps(dispatch) {
     actions: {
       getProducts: bindActionCreators(productActions.getProducts, dispatch),
       addToCart: bindActionCreators(cartActions.addToCart, dispatch),
-     
     },
   };
 }
